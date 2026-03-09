@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
+    <div class="container no-print">
         <header>
             <h1>EMEF "Herbert de Souza"</h1>
             <p>Controle de Acesso ao Transporte Escolar</p>
@@ -17,7 +17,7 @@
             <fieldset>
                 <legend>Identificação do Estudante</legend>
                 <label>Nome Completo:</label>
-                <input type="text" id="nome" placeholder="INSIRA AQUI O NOME COMPLETO DO ALUNO(A)" required>
+                <input type="text" id="nome" placeholder="NOME DO ALUNO(A)" required>
                 
                 <div class="row">
                     <div>
@@ -25,27 +25,16 @@
                         <input type="text" id="cpf" placeholder="000.000.000-00">
                     </div>
                     <div>
-                        <label>Data de Nascimento:</label>
-                        <input type="date" id="nascimento">
+                        <label>Turma:</label>
+                        <input type="text" id="turma" placeholder="Ex: 8º ANO D V">
                     </div>
                 </div>
             </fieldset>
 
             <fieldset>
-                <legend>Escolaridade e Transporte</legend>
-                <div class="row">
-                    <div>
-                        <label>Ano/Etapa:</label>
-                        <input type="text" id="etapa" placeholder="Ex: 8º ANO">
-                    </div>
-                    <div>
-                        <label>Turma:</label>
-                        <input type="text" id="turma" placeholder="Ex: 8º ANO D V">
-                    </div>
-                </div>
-                
-                <label>Bairro:</label>
-                <input type="text" id="bairro" placeholder="Ex: BAIRRO DA ZONA RURAL">
+                <legend>Localização e Transporte</legend>
+                <label>Bairro Rural:</label>
+                <input type="text" id="bairro" placeholder="Ex: BELVEDERE" required>
                 
                 <label>Utiliza Transporte Escolar?</label>
                 <select id="usaTransporte">
@@ -54,8 +43,24 @@
                 </select>
             </fieldset>
 
-            <button type="submit" id="btnSalvar">Registrar Embarque</button>
+            <input type="hidden" id="latitude" value="0">
+            <input type="hidden" id="longitude" value="0">
+
+            <button type="submit" id="btnSalvar">Registrar e Gerar Protocolo</button>
         </form>
+    </div>
+
+    <div id="protocolo" class="print-only">
+        <div class="ticket">
+            <h2>EMEF "HERBERT DE SOUZA"</h2>
+            <hr>
+            <h3>PROTOCOLO DE EMBARQUE</h3>
+            <p><strong>ALUNO:</strong> <span id="p-nome"></span></p>
+            <p><strong>TURMA:</strong> <span id="p-turma"></span></p>
+            <p><strong>DATA/HORA:</strong> <span id="p-data"></span></p>
+            <p><strong>LOCALIZAÇÃO:</strong> <span id="p-coords"></span></p>
+            <div class="footer-ticket">Apresente este comprovante ao motorista.</div>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>
